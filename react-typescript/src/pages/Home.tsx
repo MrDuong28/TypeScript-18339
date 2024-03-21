@@ -1,5 +1,5 @@
 import Banner from '~/components/Banner'
-import Footer from '~/components/Footer'
+
 // import Header from '~/components/Header'
 import ProductList from '~/components/productList'
 
@@ -9,7 +9,6 @@ const Home = (props: Props) => {
     <div>
       <Banner />
       <ProductList />
-      <Footer />
     </div>
   )
 }
