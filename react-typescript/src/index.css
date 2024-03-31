@@ -39,3 +39,20 @@ button:hover {
 .active {
   color: violet;
 }
+.form-add {
+  width: 600px;
+  max-width: 100%;
+  padding: 32px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  margin: 0 auto;
+}
+.form-group {
+  margin-bottom: 24px;
+}
+.text-sp {
+  text-align: center;
+}
+.header {
+}

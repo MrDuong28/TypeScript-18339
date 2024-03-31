@@ -23,17 +23,14 @@ li {
 }
 
 .logo {
-  height: 70px;
-  width: 180px;
+  height: 50px;
+  width: 150px;
 }
 .color {
   background-color: white;
 }
 .title {
   color: orange;
-}
-.container {
-  display: flex;
 }
 .price {
   color: red;
@@ -44,9 +41,36 @@ li {
 }
 .product-container {
   margin-left: 15px;
-  float: left;
+  display: flex;
   display: block;
 }
 footer {
   padding-top: 200px;
+}
+h1 {
+  padding-top: 10px;
+  text-align: center;
+}
+.des {
+  width: 500px;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+
+  display: flex;
+}
+.left-column {
+  width: 65%;
+  position: relative;
+}
+.left-column img {
+  float: left;
+}
+
+.right-column {
+  float: right;
+}
+.sp {
 }
