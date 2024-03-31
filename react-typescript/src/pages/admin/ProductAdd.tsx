@@ -9,7 +9,8 @@ type Props = {
 const schemaProduct = Joi.object({
   title: Joi.string().required().min(3).max(255),
   price: Joi.number().required().min(0),
-  description: Joi.string().allow('')
+  description: Joi.string().allow(''),
+  thumbnail: Joi.string().required().label('thumbnail')
 })
 
 const ProductAdd = ({ onAdd }: Props) => {
@@ -30,7 +31,7 @@ const ProductAdd = ({ onAdd }: Props) => {
       <form onSubmit={handleSubmit(onSubmit)} className='form-add'>
         <h2 className='text-sp'>Thêm sản phẩm</h2>
         <div className='form-group'>
-          <label htmlFor='title'>Title</label>
+          <label htmlFor='title'>Name</label>
           <input
             type='text'
             className='form-control'
@@ -52,6 +53,17 @@ const ProductAdd = ({ onAdd }: Props) => {
           {errors.price && <span className='text-danger'>{errors.price.message} </span>}
         </div>
         <div className='form-group'>
+          <label htmlFor='thumbnail'>Image</label>
+          <input
+            type='text'
+            className='form-control'
+            id='thumbnail'
+            placeholder='Thumbnail'
+            {...register('thumbnail', { required: true, min: 0 })}
+          />
+          {errors.thumbnail && <span className='text-danger'>{errors.thumbnail.message} </span>}
+        </div>
+        <div className='form-group'>
           <label htmlFor='description'>Description</label>
           <input
             type='text'
@@ -63,7 +75,7 @@ const ProductAdd = ({ onAdd }: Props) => {
         </div>
 
         <button type='submit' className='btn btn-primary w-100'>
-          Submit
+          Thêm
         </button>
       </form>
     </div>

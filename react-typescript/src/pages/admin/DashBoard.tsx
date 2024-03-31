@@ -29,15 +29,14 @@ const Dashboard = ({ products }: Props) => {
             <tr key={item.id}>
               <td>{item.id}</td>
               <td>{item.title}</td>
-              <td>{item.price}</td>
+              <td>{item.price}$</td>
               <td>
                 <img width={140} src={item.thumbnail} alt={item.title} />
               </td>
               <td>{item.description}</td>
               <td>
-                Action{' '}
                 <Link className='btn btn-warning ' to={`/admin/edit/${item.id}`}>
-                  Update
+                  Edit
                 </Link>
                 <button className='btn btn-danger'>Delete</button>
               </td>

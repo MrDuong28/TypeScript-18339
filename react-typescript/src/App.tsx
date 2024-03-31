@@ -37,10 +37,10 @@ function App() {
   const handleEdit = (product: TProduct) => {
     ;(async () => {
       const data = await editProduct(product)
-      // setProducts((prev) => [...prev, data])
-      setProducts([...products, data])
-      navigate('/admin')
+
+      setProducts(products.map((p) => (p.id === data.id ? data : p)))
     })()
+    navigate('/admin')
   }
   return (
     <>
@@ -56,7 +56,7 @@ function App() {
           <Route path='/admin'>
             <Route index element={<DashBoard products={products} />} />
             <Route path='/admin/add' element={<ProductAdd onAdd={handleAdd} />} />
-            <Route path='/admin/edit/:id' element={<ProductEdit onAdd={handleEdit} />} />
+            <Route path='/admin/edit/:id' element={<ProductEdit onEdit={handleEdit} />} />
           </Route>
           <Route path='*' element={<NotFound />} />
         </Routes>

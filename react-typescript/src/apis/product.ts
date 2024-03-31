@@ -10,7 +10,7 @@ export const getProductss = async () => {
     console.log(error)
   }
 }
-export const getProduct = async (id: string) => {
+export const getProduct = async (id: number) => {
   try {
     const { data } = await instance.get(`/products/${id}`)
     return data
@@ -28,7 +28,7 @@ export const createProduct = async (product: TProduct) => {
 }
 export const editProduct = async (product: TProduct) => {
   try {
-    const { data } = await instance.post(`/products`, product)
+    const { data } = await instance.put(`/products/${product.id}`, product)
     return data
   } catch (error) {
     console.log(error)

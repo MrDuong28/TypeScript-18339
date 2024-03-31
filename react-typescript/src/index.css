@@ -54,5 +54,14 @@ button:hover {
 .text-sp {
   text-align: center;
 }
-.header {
+
+.container-sp {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Để các sản phẩm được canh trái và phải */
+}
+
+.container-sp .card {
+  width: calc(25%); /* 25% chiều rộng cho mỗi sản phẩm, trừ đi khoảng cách giữa chúng */
+  margin-bottom: 20px; /* Khoảng cách dưới giữa các sản phẩm */
 }
