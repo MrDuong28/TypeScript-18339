@@ -13,6 +13,8 @@ import { TProduct } from './interfaces/TProduct'
 import ProductAdd from './pages/admin/ProductAdd'
 import { createProduct, editProduct } from './apis/product'
 import ProductEdit from './pages/admin/ProductEdit'
+import instance from './apis'
+import Banner from './components/Banner'
 
 function App() {
   const [products, setProducts] = useState<TProduct[]>([])
@@ -36,16 +38,25 @@ function App() {
   }
   const handleEdit = (product: TProduct) => {
     ;(async () => {
-      const data = await editProduct(product)
-
-      setProducts(products.map((p) => (p.id === data.id ? data : p)))
+      // const data = await editProduct(product)
+      const { data } = await instance.put(`/products/${product.id}`, product)
+      setProducts(products.map((item) => (item.id === data.id ? data : item)))
+      navigate('/admin')
     })()
-    navigate('/admin')
+  }
+  const handleDeleteProduct = (id: number) => {
+    ;(async () => {
+      const isConfirm = confirm('Bạn có chắc muốn xóa không?')
+      if (isConfirm) {
+        await instance.delete(`/products/${id}`)
+        setProducts(products.filter((item) => item.id !== id && item))
+      }
+    })()
   }
   return (
     <>
       <Header />
-      <main className='container main'>
+      <main className='tc-m'>
         <Routes>
           <Route path='/'>
             <Route index element={<Home products={products} />} />
@@ -54,7 +65,7 @@ function App() {
             <Route path='/register' element={<Register />} />
           </Route>
           <Route path='/admin'>
-            <Route index element={<DashBoard products={products} />} />
+            <Route index element={<DashBoard onDel={handleDeleteProduct} products={products} />} />
             <Route path='/admin/add' element={<ProductAdd onAdd={handleAdd} />} />
             <Route path='/admin/edit/:id' element={<ProductEdit onEdit={handleEdit} />} />
           </Route>

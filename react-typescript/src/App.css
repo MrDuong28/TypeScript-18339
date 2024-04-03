@@ -39,14 +39,7 @@ li {
 .button {
   width: 2000px;
 }
-.product-container {
-  margin-left: 15px;
-  display: flex;
-  display: block;
-}
-footer {
-  padding-top: 200px;
-}
+
 h1 {
   padding-top: 10px;
   text-align: center;

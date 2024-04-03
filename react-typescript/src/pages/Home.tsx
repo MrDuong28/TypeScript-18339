@@ -11,6 +11,7 @@ type Props = { products: TProduct[] }
 const Home = ({ products }: Props) => {
   return (
     <div className='container-sp'>
+      <Banner />
       {products.map((product) => (
         <Card style={{ width: '20rem' }}>
           <Link to={`/shop/${product.id}`}>

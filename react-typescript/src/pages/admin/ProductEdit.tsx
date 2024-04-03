@@ -5,6 +5,7 @@ import { joiResolver } from '@hookform/resolvers/joi'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getProduct } from '~/apis/product'
+import instance from '~/apis'
 
 type Props = {
   onEdit: (product: TProduct) => void
@@ -17,14 +18,8 @@ const schemaProduct = Joi.object({
 })
 
 const ProductEdit = ({ onEdit }: Props) => {
-  const [product, setProduct] = useState<TProduct | null>(null)
   const { id } = useParams()
-  useEffect(() => {
-    ;(async () => {
-      const data = await getProduct(Number(id))
-      setProduct(data)
-    })()
-  }, [id])
+  const [product, setProduct] = useState<TProduct | null>(null)
   const {
     register,
     handleSubmit,
@@ -32,9 +27,16 @@ const ProductEdit = ({ onEdit }: Props) => {
   } = useForm<TProduct>({
     resolver: joiResolver(schemaProduct)
   })
+  useEffect(() => {
+    ;(async () => {
+      // const data = await getProduct(Number(id))
+      const { data } = await instance.get(`/products/${id}`)
+      setProduct(data)
+    })()
+  }, [])
 
-  const onSubmit: SubmitHandler<TProduct> = (data: TProduct) => {
-    onEdit({ ...data, id })
+  const onSubmit = (product: TProduct) => {
+    onEdit({ ...product, id })
   }
   return (
     <div className='container'>
@@ -58,7 +60,7 @@ const ProductEdit = ({ onEdit }: Props) => {
             type='text'
             className='form-control'
             id='price'
-            defaultValue={product?.price as number}
+            defaultValue={product?.price}
             placeholder='Nhập giá sản phẩm'
             {...register('price', { required: true, min: 0 })}
           />
@@ -87,7 +89,7 @@ const ProductEdit = ({ onEdit }: Props) => {
             {...register('description')}
           />
         </div>
-        <button type='submit' className='btn btn-primary w-100'>
+        <button type='submit' className='btn btn-success w-100'>
           Sửa
         </button>
       </form>
