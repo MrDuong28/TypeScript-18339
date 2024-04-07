@@ -47,7 +47,7 @@ function Header() {
                   </Nav>
                   <Form className='d-flex'>
                     <Form.Control type='search' placeholder='Search' className='me-2' aria-label='Search' />
-                    <Button variant='outline-primary'>Search</Button>{' '}
+                    <Button className='btn btn-info btn-lg btn-block'>Search</Button>{' '}
                   </Form>
                 </Offcanvas.Body>
               </Navbar.Offcanvas>
